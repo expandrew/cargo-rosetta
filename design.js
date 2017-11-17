@@ -1316,7 +1316,7 @@ Cargo.Event.on("formatting_complete", function() {
 	// Re-check for audio components that have moved
 	Cargo.Core.Audio.CheckForAudio();
 
-
+	makeThumbnailLinksClickable();
 });
 
 Cargo.Event.on("thumbsize_complete", function() {
@@ -1405,6 +1405,7 @@ Cargo.Event.on("show_index_complete", function(pid) {
 	// remove inline-block class from thumbnails for index
 	$('body #thumbnails').removeClass('inline-block');
 
+	makeThumbnailLinksClickable();
 });
 
 
@@ -1469,3 +1470,15 @@ jQuery.extend( jQuery.easing,
 		return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
 	},
 });
+
+
+////////////////////////////////////////////////////////////////////////////////
+// To make thumbnail links clickable
+////////////////////////////////////////////////////////////////////////////////
+function makeThumbnailLinksClickable () {
+	$(".thumbnail-link").on('click', function() {
+		window.location = $(this).find("a").attr("href");
+		return false;
+	});
+}
+////////////////////////////////////////////////////////////////////////////////
